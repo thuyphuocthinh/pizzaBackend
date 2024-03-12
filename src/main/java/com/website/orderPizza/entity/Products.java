@@ -11,6 +11,8 @@ public class Products {
     private String productName;
     @Column(name = "unit_price")
     private String unitPrice;
+    @Column(name = "image")
+    private String image;
     @Column(name = "description")
     private String description;
     @ManyToOne
@@ -57,4 +59,11 @@ public class Products {
         this.description = description;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
