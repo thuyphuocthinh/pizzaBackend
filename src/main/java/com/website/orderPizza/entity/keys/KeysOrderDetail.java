@@ -7,32 +7,32 @@ import java.io.Serializable;
 
 @Embeddable
 public class KeysOrderDetail implements Serializable {
-    @Column(name = "product_id")
-    private int product_id;
+    @Column(name = "product_id", updatable = false, insertable = false)
+    private int productId;
 
-    @Column(name = "order_id")
-    private int order_id;
+    @Column(name = "order_id", updatable = false, insertable = false)
+    private int orderId;
 
     public KeysOrderDetail() {}
 
-    public KeysOrderDetail(int product_id, int order_id) {
-        this.order_id = order_id;
-        this.product_id = product_id;
+    public KeysOrderDetail(int productid, int orderId) {
+        this.orderId = orderId;
+        this.productId = productid;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
-    public int getOrder_id() {
-        return order_id;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }

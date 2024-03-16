@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:5500")
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -22,7 +22,7 @@ public class ProductController {
     public ResponseEntity<?> addNewProduct(@RequestParam("file") MultipartFile file,
                                            @RequestParam String productName,
                                            @RequestParam String description,
-                                           @RequestParam String unitPrice,
+                                           @RequestParam double unitPrice,
                                            @RequestParam int productGroupId) {
         ResponseData responseData = new ResponseData();
         boolean isSuccess = menuServiceImp.addNewProduct(file, productName, description, unitPrice, productGroupId);

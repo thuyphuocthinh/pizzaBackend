@@ -4,7 +4,7 @@ public class ProductRequest {
     private int id;
     private String image;
     private String productName;
-    private String unitPrice;
+    private double unitPrice;
     private String description;
 
     public int getId() {
@@ -31,11 +31,11 @@ public class ProductRequest {
         this.productName = productName;
     }
 
-    public String getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(String unitPrice) {
+    public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
 

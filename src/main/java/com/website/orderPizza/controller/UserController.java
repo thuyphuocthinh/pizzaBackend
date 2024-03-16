@@ -2,14 +2,12 @@ package com.website.orderPizza.controller;
 
 import com.website.orderPizza.DTO.UsersDTO;
 import com.website.orderPizza.payload.ResponseData;
+import com.website.orderPizza.payload.request.UpdateUserRequest;
 import com.website.orderPizza.service.imp.UsersServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,4 +31,33 @@ public class UserController {
         }
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateProfile(@RequestBody UpdateUserRequest updateUserRequest) {
+        ResponseData responseData = new ResponseData();
+        if (usersServiceImp.updateProfile(updateUserRequest)) {
+            responseData.setStatusCode(200);
+            responseData.setDescription("Updated profile successfully");
+        } else {
+            responseData.setStatusCode(200);
+            responseData.setDescription("Updated profile failed");
+        }
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
+
+//    @PostMapping("/user/resetPassword")
+//    public GenericResponse resetPassword(HttpServletRequest request,
+//                                         @RequestParam("email") String userEmail) {
+//        User user = userService.findUserByEmail(userEmail);
+//        if (user == null) {
+//            throw new UserNotFoundException();
+//        }
+//        String token = UUID.randomUUID().toString();
+//        userService.createPasswordResetTokenForUser(user, token);
+//        mailSender.send(constructResetTokenEmail(getAppUrl(request),
+//                request.getLocale(), token, user));
+//        return new GenericResponse(
+//                messages.getMessage("message.resetPasswordEmail", null,
+//                        request.getLocale()));
+//    }
 }

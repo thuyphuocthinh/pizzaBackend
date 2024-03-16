@@ -7,4 +7,6 @@ import java.util.List;
 public interface CategoryServiceImp {
     List<ProductGroupDTO> getListOfCategory();
     void deleteById(Integer id);
+    boolean addNewCategory(String productGroupName);
+    boolean updateCategory(int productGroupId, String productGroupName);
 }

@@ -2,6 +2,16 @@ package com.website.orderPizza.payload;
 
 public class ResponseData {
     private int statusCode;
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     private Object data;
     private String description;
 

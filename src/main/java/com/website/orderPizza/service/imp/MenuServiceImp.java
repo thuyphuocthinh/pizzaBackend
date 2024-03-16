@@ -12,7 +12,7 @@ import java.util.List;
 public interface MenuServiceImp {
     List<ProductsDTO> getListOfProducts();
     List<ProductGroupDTO> getProductsByCategory();
-    boolean addNewProduct(MultipartFile file, String productName, String description, String unitPrice, int productGroupId);
+    boolean addNewProduct(MultipartFile file, String productName, String description, double unitPrice, int productGroupId);
     void deleteById(Integer id);
     boolean updateProduct(ProductRequest productRequest);
 }

@@ -5,6 +5,7 @@ import com.website.orderPizza.entity.ProductGroup;
 import com.website.orderPizza.repository.CategoryRepository;
 import com.website.orderPizza.service.imp.CategoryServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,5 +31,30 @@ public class CategoryService implements CategoryServiceImp {
     @Override
     public void deleteById(Integer id) {
         categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean addNewCategory(String productGroupName) {
+        ProductGroup productGroup = new ProductGroup();
+        productGroup.setProductGroupName(productGroupName);
+        try{
+            categoryRepository.save(productGroup);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateCategory(int productGroupId, String productGroupName) {
+        ProductGroup productGroup = new ProductGroup();
+        productGroup.setId(productGroupId);
+        productGroup.setProductGroupName(productGroupName);
+        try {
+            categoryRepository.save(productGroup);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

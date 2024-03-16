@@ -73,7 +73,7 @@ public class MenuService implements MenuServiceImp {
     }
 
     @Override
-    public boolean addNewProduct(MultipartFile file, String productName, String description, String unitPrice, int productGroupId) {
+    public boolean addNewProduct(MultipartFile file, String productName, String description, double unitPrice, int productGroupId) {
         boolean isSuccess = false;
         try {
             boolean isSaveFileSuccess = fileServiceImp.saveFile(file);

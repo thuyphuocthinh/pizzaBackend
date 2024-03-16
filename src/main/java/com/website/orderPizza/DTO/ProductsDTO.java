@@ -5,10 +5,19 @@ import com.website.orderPizza.entity.ProductGroup;
 public class ProductsDTO {
     private int id;
     private String productName;
-    private String unitPrice;
+    private double unitPrice;
     private String image;
     private String description;
     private ProductGroup productGroup;
+    private int productGroupId;
+
+    public int getProductGroupId() {
+        return productGroupId;
+    }
+
+    public void setProductGroupId(int productGroupId) {
+        this.productGroupId = productGroupId;
+    }
 
     public ProductGroup getProductGroup() {
         return productGroup;
@@ -34,11 +43,11 @@ public class ProductsDTO {
         this.productName = productName;
     }
 
-    public String getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(String unitPrice) {
+    public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
