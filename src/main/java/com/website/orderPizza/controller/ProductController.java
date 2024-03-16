@@ -18,7 +18,7 @@ import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 public class ProductController {
     @Autowired
     MenuServiceImp menuServiceImp;
-    @PostMapping(value = "/add", consumes = MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/add")
     public ResponseEntity<?> addNewProduct(@RequestParam("file") MultipartFile file,
                                            @RequestParam String productName,
                                            @RequestParam String description,
