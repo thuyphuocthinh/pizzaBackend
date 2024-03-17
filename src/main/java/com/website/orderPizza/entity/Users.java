@@ -22,6 +22,17 @@ public class Users {
     private String phoneNumber;
     @Column(name = "created_date")
     private Date createdDate;
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
+
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
+
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Roles roles;

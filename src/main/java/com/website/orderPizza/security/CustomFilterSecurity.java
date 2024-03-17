@@ -34,7 +34,7 @@ public class CustomFilterSecurity {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/products/**", "/category/**", "/users/**", "/orders/**", "/v3/api-docs", "/authentication/**").permitAll()
+                        .requestMatchers("/products/**", "/category/**", "/users/**", "/orders/**", "/v3/api-docs", "/authentication/**", "/reset/**").permitAll()
                         .requestMatchers("/v2/api-docs").permitAll()
                         .requestMatchers("/configuration/ui").permitAll()
                         .requestMatchers("/swagger-resources/**").permitAll()

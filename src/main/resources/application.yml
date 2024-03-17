@@ -13,9 +13,26 @@ spring:
   servlet:
     multipart:
       max-file-size: 10MB
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
+  mail:
+    host: smtp.gmail.com
+    username: thuyphuocthinhtpt1@gmail.com
+    password: oyopoltovsmkuehc
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 jwt:
   privateKey: bdUrvls6cxtBPvGe2mBXXMNUGh6drPNu0R4UeP2JDjU=
 
 fileUpload:
   rootPath: D:\PizzaUpload
+
 

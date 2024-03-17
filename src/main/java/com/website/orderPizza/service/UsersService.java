@@ -7,6 +7,7 @@ import com.website.orderPizza.payload.request.UpdateUserRequest;
 import com.website.orderPizza.repository.UsersRepository;
 import com.website.orderPizza.service.imp.UsersServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +55,30 @@ public class UsersService implements UsersServiceImp {
             System.out.println("Error updated profile: " + e.getMessage());
             return false;
         }
+    }
+
+    @Override
+    public void updateResetPasswordToken(String token, String email) {
+        Users users = usersRepository.findByEmail(email);
+        if (users != null) {
+            users.setResetPasswordToken(token);
+            usersRepository.save(users);
+        } else {
+            throw new UsernameNotFoundException("Could not find any user with this email " + email);
+        }
+    }
+    // get to know which user needs to reset password
+    @Override
+    public Users getUserByResetPasswordToken(String token) {
+        Users users = usersRepository.findByResetPasswordToken(token);
+        return users;
+    }
+
+    @Override
+    public void updatePassword(Users users, String newPassword) {
+        String encodeNewPassword = passwordEncoder.encode(newPassword);
+        users.setPassword(encodeNewPassword);
+        users.setResetPasswordToken(null);
+        usersRepository.save(users);
     }
 }
