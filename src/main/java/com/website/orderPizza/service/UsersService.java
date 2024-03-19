@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UsersService implements UsersServiceImp {
     @Autowired
@@ -42,14 +44,16 @@ public class UsersService implements UsersServiceImp {
 
     @Override
     public boolean updateProfile(UpdateUserRequest updateUserRequest) {
-        Users users = new Users();
-        users.setId(updateUserRequest.getUserId());
-        users.setUsername(updateUserRequest.getUsername());
-        users.setAddress(updateUserRequest.getAddress());
-        users.setPhoneNumber(updateUserRequest.getPhoneNumber());
-        users.setPassword(passwordEncoder.encode(updateUserRequest.getPassword()));
+        Optional<Users> users = usersRepository.findById(updateUserRequest.getUserId());
+        Users users1 = new Users();
+        users1.setId(updateUserRequest.getUserId());
+        users1.setUsername(updateUserRequest.getUsername());
+        users1.setAddress(updateUserRequest.getAddress());
+        users1.setPhoneNumber(updateUserRequest.getPhoneNumber());
+        users1.setPassword(passwordEncoder.encode(updateUserRequest.getPassword()));
+        users1.setEmail(users.get().getEmail());
         try {
-            usersRepository.save(users);
+            usersRepository.save(users1);
             return true;
         } catch (Exception e) {
             System.out.println("Error updated profile: " + e.getMessage());
@@ -80,5 +84,10 @@ public class UsersService implements UsersServiceImp {
         users.setPassword(encodeNewPassword);
         users.setResetPasswordToken(null);
         usersRepository.save(users);
+    }
+
+    @Override
+    public Users getUsersByEmail(String email) {
+        return usersRepository.findByEmail(email);
     }
 }

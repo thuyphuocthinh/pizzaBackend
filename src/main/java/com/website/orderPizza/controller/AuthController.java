@@ -1,9 +1,12 @@
 package com.website.orderPizza.controller;
 
+import com.website.orderPizza.DTO.UsersDTO;
+import com.website.orderPizza.entity.Users;
 import com.website.orderPizza.payload.ResponseData;
 import com.website.orderPizza.payload.request.LoginRequest;
 import com.website.orderPizza.payload.request.SignupRequest;
 import com.website.orderPizza.service.imp.AuthenticationServiceImp;
+import com.website.orderPizza.service.imp.UsersServiceImp;
 import com.website.orderPizza.utils.JwtUtilsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +21,8 @@ public class AuthController {
     AuthenticationServiceImp authenticationServiceImp;
     @Autowired
     JwtUtilsHelper jwtUtilsHelper;
+    @Autowired
+    UsersServiceImp usersServiceImp;
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         ResponseData responseData = new ResponseData();
@@ -26,7 +31,13 @@ public class AuthController {
 //        System.out.println(secretString);
         if (authenticationServiceImp.login(loginRequest)) {
             String token = jwtUtilsHelper.generateToken(loginRequest.getEmail());
-            responseData.setData("");
+            Users users =  usersServiceImp.getUsersByEmail(loginRequest.getEmail());
+            UsersDTO usersDTO = new UsersDTO();
+            usersDTO.setId(users.getId());
+            usersDTO.setPhoneNumber(users.getPhoneNumber());
+            usersDTO.setAddress(users.getAddress());
+            usersDTO.setEmail(users.getEmail());
+            responseData.setData(usersDTO);
             responseData.setToken(token);
             responseData.setDescription("Login Successfully");
         } else {

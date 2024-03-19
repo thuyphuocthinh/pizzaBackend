@@ -12,4 +12,5 @@ public interface UsersServiceImp {
     void updateResetPasswordToken(String token, String email);
     Users getUserByResetPasswordToken(String token);
     void updatePassword(Users users, String newPassword);
+    Users getUsersByEmail(String email);
 }
